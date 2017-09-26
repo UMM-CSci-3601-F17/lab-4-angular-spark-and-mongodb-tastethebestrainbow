@@ -46,7 +46,6 @@ public class Server {
 
         before((request, response) -> response.header("Access-Control-Allow-Origin", "*"));
 
-
         // Simple example route
         get("/hello", (req, res) -> "Hello World");
 
