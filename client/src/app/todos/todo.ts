@@ -1,7 +1,7 @@
 export interface Todo {
     _id: string,
-    name: string,
-    age: number,
-    company: string,
-    email: string
+    owner: string,
+    catagory: string,
+    body: string,
+    status: string
 }

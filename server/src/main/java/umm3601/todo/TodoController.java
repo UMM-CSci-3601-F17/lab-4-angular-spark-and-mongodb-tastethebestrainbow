@@ -128,6 +128,8 @@ public class TodoController {
      * @param res
      * @return
      */
+
+    /*
     public boolean addNewTodo(Request req, Response res)
     {
 
@@ -139,15 +141,16 @@ public class TodoController {
                 try {
                     BasicDBObject dbO = (BasicDBObject) o;
 
+//edited getstrings
                     String name = dbO.getString("name");
                     //For some reason age is a string right now, caused by angular.
                     //This is a problem and should not be this way but here ya go
-                    int age = dbO.getInt("age");
+                    String catagory = dbO.getInt("catagory");
                     String company = dbO.getString("company");
                     String email = dbO.getString("email");
 
                     System.err.println("Adding new todo [name=" + name + ", age=" + age + " company=" + company + " email=" + email + ']');
-                    return addNewTodo(name, age, company, email);
+                    return addNewTodo(name, catagory, body, status);
                 }
                 catch(NullPointerException e)
                 {
@@ -168,22 +171,23 @@ public class TodoController {
             return false;
         }
     }
+*/
 
     /**
      *
-     * @param name
-     * @param age
-     * @param company
-     * @param email
+     * @param owner
+     * @param catagory
+     * @param body
+     * @param status
      * @return
      */
-    public boolean addNewTodo(String name, int age, String company, String email) {
+    public boolean addNewTodo(String owner, String catagory, String body, String status) {
 
         Document newTodo = new Document();
-        newTodo.append("name", name);
-        newTodo.append("age", age);
-        newTodo.append("company", company);
-        newTodo.append("email", email);
+        newTodo.append("owner", owner);
+        newTodo.append("catagory", catagory);
+        newTodo.append("body", body);
+        newTodo.append("status", status);
 
         try {
             todoCollection.insertOne(newTodo);

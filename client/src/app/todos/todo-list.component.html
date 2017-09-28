@@ -4,12 +4,12 @@ Add a new Todo:
 <span class="row">
     <span id="addTodo" class="col-lg-5">
         <span class="input-group">
-            <input class="form-control" #input type="text" placeholder="Name" [(ngModel)]="newTodoName">
-            <input class="form-control" #input type="number" placeholder="Age" [(ngModel)]="newTodoAge">
-            <input class="form-control" #input type="text" placeholder="Company" [(ngModel)]="newTodoCompany">
-            <input class="form-control" #input type="text" placeholder="Email" [(ngModel)]="newTodoEmail">
+            <input class="form-control" #input type="text" placeholder="Owner" [(ngModel)]="newTodoOwner">
+            <input class="form-control" #input type="text" placeholder="Catagory" [(ngModel)]="newTodoCatagory">
+            <input class="form-control" #input type="text" placeholder="Body" [(ngModel)]="newTodoBody">
+            <input class="form-control" #input type="text" placeholder="Status" [(ngModel)]="newTodoStatus">
 
-            <button class="form-control" #input type="button" (click)="this.addNewTodo(newTodoName, newTodoAge, newTodoCompany, newTodoEmail)">Add Todo</button>
+            <button class="form-control" #input type="button" (click)="this.addNewTodo(newTodoOwner, newTodoCatagory, newTodoBody, newTodoStatus)">Add Todo</button>
         </span>
     </span>
 </span>
@@ -19,13 +19,13 @@ Add a new Todo:
     the typescript. Unless made to do so by defining a todoName variable within this component's typescript file-->
 <span id="title" class="list-group-item list-group-item-info">
     <span id="list-title"> Todo Name </span>
-    <input id="todoName" #input type="text" placeholder="Filter by name" (input)="todoName = $event.target.value">
-    <input id="todoAge" #input type="number" placeholder="Filter by age" (input)="todoAge = $event.target.value">
+    <input id="todoOwner" #input type="text" placeholder="Filter by Owner" (input)="todoOwner = $event.target.value">
+    <input id="todoCatagory" #input type="text" placeholder="Filter by Category" (input)="todoCatagory = $event.target.value">
 </span>
 
 <ul class="list-group" *ngIf="todos; else todosError">
-    <li id="todos" *ngFor="let todo of this.filterTodos(todoName, todoAge)" class="list-group-item">
-        {{ todo.name }} is {{ todo.age }} years old
+    <li id="todos" *ngFor="let todo of this.filterTodos(todoOwner, todoCatagory)" class="list-group-item">
+        Todo by: {{ todo.owner }} says {{ todo.body }}
     </li>
 </ul>
 <!-- Maybe this should be a pop-up instead of just a text message? Not sure. -->

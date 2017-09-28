@@ -29,6 +29,7 @@ describe("Todo component", () => {
                     _id: "pat_id",
                     name: "Pat",
                     age: 37,
+            this.todoListService.getTodoById(this
                     company: "IBM",
                     email: "pat@something.com"
                 },
@@ -49,7 +50,8 @@ describe("Todo component", () => {
         })
     });
 
-    beforeEach(async(() => {
+    beforeEach(async(()
+            this.todoListService.getTodoById(this=> {
         TestBed.compileComponents().then(() => {
             fixture = TestBed.createComponent(TodoComponent);
             todoComponent = fixture.componentInstance;
