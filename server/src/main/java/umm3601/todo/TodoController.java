@@ -129,7 +129,6 @@ public class TodoController {
      * @return
      */
 
-    /*
     public boolean addNewTodo(Request req, Response res)
     {
 
@@ -142,15 +141,15 @@ public class TodoController {
                     BasicDBObject dbO = (BasicDBObject) o;
 
 //edited getstrings
-                    String name = dbO.getString("name");
+                    String owner = dbO.getString("owner");
                     //For some reason age is a string right now, caused by angular.
                     //This is a problem and should not be this way but here ya go
-                    String catagory = dbO.getInt("catagory");
-                    String company = dbO.getString("company");
-                    String email = dbO.getString("email");
+                    String catagory = dbO.getString("catagory");
+                    String body = dbO.getString("body");
+                    String status = dbO.getString("status");
 
-                    System.err.println("Adding new todo [name=" + name + ", age=" + age + " company=" + company + " email=" + email + ']');
-                    return addNewTodo(name, catagory, body, status);
+                    //System.err.println("Adding new todo [name=" + name + ", age=" + age + " company=" + company + " email=" + email + ']');
+                    return addNewTodo(owner, catagory, body, "True");
                 }
                 catch(NullPointerException e)
                 {
@@ -171,7 +170,6 @@ public class TodoController {
             return false;
         }
     }
-*/
 
     /**
      *
@@ -200,9 +198,5 @@ public class TodoController {
 
         return true;
     }
-
-
-
-
 }
 

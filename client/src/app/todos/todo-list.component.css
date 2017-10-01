@@ -11,4 +11,20 @@
 #list-title {
     padding-right: 14px;
 }
+#todoInputArea{
+    padding: 15px;
+    background:lightblue;
+}
+.customButton{
+    border:none;
+    border-radius: 1px;
+    padding: 6px;
+    background:lightblue;
+}
+
+.customButton:hover{
+    background:dodgerblue;
+}
+
+
 

@@ -1,31 +1,38 @@
-
-
-Add a new Todo:
+<hr>
+<div id="todoInputArea">
+<h4>Add a new Todo:</h4>
 <span class="row">
     <span id="addTodo" class="col-lg-5">
         <span class="input-group">
             <input class="form-control" #input type="text" placeholder="Owner" [(ngModel)]="newTodoOwner">
             <input class="form-control" #input type="text" placeholder="Catagory" [(ngModel)]="newTodoCatagory">
             <input class="form-control" #input type="text" placeholder="Body" [(ngModel)]="newTodoBody">
-            <input class="form-control" #input type="text" placeholder="Status" [(ngModel)]="newTodoStatus">
-
             <button class="form-control" #input type="button" (click)="this.addNewTodo(newTodoOwner, newTodoCatagory, newTodoBody, newTodoStatus)">Add Todo</button>
         </span>
     </span>
 </span>
 
-    <!-- The names todoName and todoAge, different from searchName and searchAge, are being
-    used here only to illustrate that these inputs are not necessarily explicitly referencable from within
-    the typescript. Unless made to do so by defining a todoName variable within this component's typescript file-->
+</div>
+<br>
+
 <span id="title" class="list-group-item list-group-item-info">
-    <span id="list-title"> Todo Name </span>
+    <h4>Filter Todos:</h4>
     <input id="todoOwner" #input type="text" placeholder="Filter by Owner" (input)="todoOwner = $event.target.value">
     <input id="todoCatagory" #input type="text" placeholder="Filter by Category" (input)="todoCatagory = $event.target.value">
+    <input id="todoBody" #input type="text" placeholder="Filter by Body" (input)="todoBody = $event.target.value">
+    <input id="todoStatus" #input type="text" placeholder="Filter by Status" (input)="todoStatus = $event.target.value">
+
 </span>
 
 <ul class="list-group" *ngIf="todos; else todosError">
-    <li id="todos" *ngFor="let todo of this.filterTodos(todoOwner, todoCatagory)" class="list-group-item">
-        Todo by: {{ todo.owner }} says {{ todo.body }}
+    <li id="todos" *ngFor="let todo of this.filterTodos(todoOwner, todoCatagory, todoBody, todoStatus)" class="list-group-item">
+        <strong>Owner: </strong>{{ todo.owner }}<br>
+        <strong>Category: </strong> {{ todo.catagory }}<br>
+        <strong>Status: </strong> {{ todo.status }}<br>
+        <strong>Body: </strong> {{ todo.body }}<br>
+        <button class="customButton" #input type="button">Toggle Status</button>
+        <button class="customButton" #input type="button"> <span class="glyphicon glyphicon-trash"></span> Delete</button>
+
     </li>
 </ul>
 <!-- Maybe this should be a pop-up instead of just a text message? Not sure. -->
@@ -37,3 +44,4 @@ Add a new Todo:
         Please wait a bit and try again or start the server.
     </p>
 </ng-template>
+

@@ -35,7 +35,7 @@ export class TodoListComponent implements OnInit {
 
     }
 
-    addNewTodo(owner: string, catagory: number, body : string, status : string) : void{
+    addNewTodo(owner: string, catagory: string, body : string, status : string) : void{
 
         //Here we clear all the fields, probably a better way of doing
         //this could be with clearing forms or something else
@@ -53,6 +53,10 @@ export class TodoListComponent implements OnInit {
             // for this lab it's not necessary
             this.refreshTodos();
         });
+    }
+
+    deleteTodo() : void{
+        //Fill in later yo
     }
 
 
