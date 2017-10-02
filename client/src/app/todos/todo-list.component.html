@@ -5,9 +5,10 @@
     <span id="addTodo" class="col-lg-5">
         <span class="input-group">
             <input class="form-control" #input type="text" placeholder="Owner" [(ngModel)]="newTodoOwner">
-            <input class="form-control" #input type="text" placeholder="Catagory" [(ngModel)]="newTodoCatagory">
+            <input class="form-control" #input type="text" placeholder="Category" [(ngModel)]="newTodoCategory">
             <input class="form-control" #input type="text" placeholder="Body" [(ngModel)]="newTodoBody">
-            <button class="form-control" #input type="button" (click)="this.addNewTodo(newTodoOwner, newTodoCatagory, newTodoBody, newTodoStatus)">Add Todo</button>
+            <span class="form-control"> Status: <input #input type="checkbox" placeholder="False" (input)="todoStatus = $event.target.value"></span>
+            <button class="form-control" #input type="button" (click)="this.addNewTodo(newTodoOwner, newTodoCategory, newTodoBody, newTodoStatus)">Add Todo</button>
         </span>
     </span>
 </span>
@@ -18,20 +19,19 @@
 <span id="title" class="list-group-item list-group-item-info">
     <h4>Filter Todos:</h4>
     <input id="todoOwner" #input type="text" placeholder="Filter by Owner" (input)="todoOwner = $event.target.value">
-    <input id="todoCatagory" #input type="text" placeholder="Filter by Category" (input)="todoCatagory = $event.target.value">
+    <input id="todoCategory" #input type="text" placeholder="Filter by Category" (input)="todoCategory = $event.target.value">
     <input id="todoBody" #input type="text" placeholder="Filter by Body" (input)="todoBody = $event.target.value">
-    <input id="todoStatus" #input type="text" placeholder="Filter by Status" (input)="todoStatus = $event.target.value">
-
+    <span> Status: <input id="todoStatus" #input type="checkbox" placeholder="Filter by Status" (input)="todoStatus = $event.target.value"></span>
 </span>
 
 <ul class="list-group" *ngIf="todos; else todosError">
-    <li id="todos" *ngFor="let todo of this.filterTodos(todoOwner, todoCatagory, todoBody, todoStatus)" class="list-group-item">
+    <li id="todos" *ngFor="let todo of this.filterTodos(todoOwner, todoCategory, todoBody, todoStatus)" class="list-group-item">
         <strong>Owner: </strong>{{ todo.owner }}<br>
-        <strong>Category: </strong> {{ todo.catagory }}<br>
+        <strong>Category: </strong> {{ todo.category }}<br>
         <strong>Status: </strong> {{ todo.status }}<br>
         <strong>Body: </strong> {{ todo.body }}<br>
         <button class="customButton" #input type="button">Toggle Status</button>
-        <button class="customButton" #input type="button"> <span class="glyphicon glyphicon-trash"></span> Delete</button>
+        <button class="customButton" #input type="button"> Delete</button>
 
     </li>
 </ul>
