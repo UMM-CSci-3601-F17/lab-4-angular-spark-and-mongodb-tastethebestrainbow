@@ -18,12 +18,12 @@ export class TodoListComponent implements OnInit {
     public todoOwner : string;
     public todoCategory : string;
     public todoBody : string;
-    public todoStatus : boolean;
+    public todoStatus : string;
 
     public newTodoOwner:string;
     public newTodoCategory: string;
     public newTodoBody: string;
-    public newTodoStatus: boolean;
+    public newTodoStatus: string;
 
 
     //Inject the TodoListService into this component.
@@ -35,7 +35,7 @@ export class TodoListComponent implements OnInit {
 
     }
 
-    addNewTodo(owner: string, category: string, body : string, status : boolean) : void{
+    addNewTodo(owner: string, category: string, body : string, status : string) : void{
 
         //Here we clear all the fields, probably a better way of doing
         //this could be with clearing forms or something else
@@ -55,13 +55,8 @@ export class TodoListComponent implements OnInit {
         });
     }
 
-    deleteTodo() : void{
-        //Fill in later yo
-    }
 
-
-
-    public filterTodos(searchOwner: string, searchCategory: string, searchBody: string, searchStatus: boolean): Todo[] {
+    public filterTodos(searchOwner: string, searchCategory: string, searchBody: string, searchStatus: string): Todo[] {
 
         this.filteredTodos = this.todos;
 
@@ -84,11 +79,20 @@ export class TodoListComponent implements OnInit {
         }
 
         //Filter by body
-        if (searchBody != null) {
+        if (searchBody != null && searchBody != "") {
             searchBody = searchBody.toLocaleLowerCase();
 
             this.filteredTodos = this.filteredTodos.filter(todo => {
                 return !searchBody || todo.body.toLowerCase().indexOf(searchBody) !== -1;
+            });
+        }
+
+        //Filter by status
+        if (searchStatus != null) {
+            searchStatus = searchStatus.toLocaleLowerCase();
+
+            this.filteredTodos = this.filteredTodos.filter(todo => {
+                return !searchStatus || todo.status.toLowerCase().indexOf(searchStatus) !== -1;
             });
         }
         return this.filteredTodos;

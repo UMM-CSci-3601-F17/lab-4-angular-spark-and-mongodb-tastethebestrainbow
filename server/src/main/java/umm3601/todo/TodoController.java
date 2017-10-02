@@ -144,12 +144,12 @@ public class TodoController {
                     String owner = dbO.getString("owner");
                     //For some reason age is a string right now, caused by angular.
                     //This is a problem and should not be this way but here ya go
-                    String catagory = dbO.getString("catagory");
+                    String category = dbO.getString("category");
                     String body = dbO.getString("body");
                     String status = dbO.getString("status");
 
                     //System.err.println("Adding new todo [name=" + name + ", age=" + age + " company=" + company + " email=" + email + ']');
-                    return addNewTodo(owner, catagory, body, "True");
+                    return addNewTodo(owner, category, body, status);
                 }
                 catch(NullPointerException e)
                 {
@@ -174,16 +174,16 @@ public class TodoController {
     /**
      *
      * @param owner
-     * @param catagory
+     * @param category
      * @param body
      * @param status
      * @return
      */
-    public boolean addNewTodo(String owner, String catagory, String body, String status) {
+    public boolean addNewTodo(String owner, String category, String body, String status) {
 
         Document newTodo = new Document();
         newTodo.append("owner", owner);
-        newTodo.append("catagory", catagory);
+        newTodo.append("category", category);
         newTodo.append("body", body);
         newTodo.append("status", status);
 

@@ -5,7 +5,7 @@ import org.bson.types.ObjectId;
 public class Todo {
     ObjectId _id;
     String owner;
-    String catagory;
+    String category;
     String body;
     String status;
 }

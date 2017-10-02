@@ -7,7 +7,10 @@
             <input class="form-control" #input type="text" placeholder="Owner" [(ngModel)]="newTodoOwner">
             <input class="form-control" #input type="text" placeholder="Category" [(ngModel)]="newTodoCategory">
             <input class="form-control" #input type="text" placeholder="Body" [(ngModel)]="newTodoBody">
-            <span class="form-control"> Status: <input #input type="checkbox" placeholder="False" (input)="todoStatus = $event.target.value"></span>
+            <select class="form-control" [(ngModel)]="newTodoStatus">
+                <option selected="selected" value="Complete">Complete</option>
+                <option value="Incomplete">Incomplete</option>
+            </select>
             <button class="form-control" #input type="button" (click)="this.addNewTodo(newTodoOwner, newTodoCategory, newTodoBody, newTodoStatus)">Add Todo</button>
         </span>
     </span>
@@ -21,7 +24,10 @@
     <input id="todoOwner" #input type="text" placeholder="Filter by Owner" (input)="todoOwner = $event.target.value">
     <input id="todoCategory" #input type="text" placeholder="Filter by Category" (input)="todoCategory = $event.target.value">
     <input id="todoBody" #input type="text" placeholder="Filter by Body" (input)="todoBody = $event.target.value">
-    <span> Status: <input id="todoStatus" #input type="checkbox" placeholder="Filter by Status" (input)="todoStatus = $event.target.value"></span>
+    <select [(ngModel)]="todoStatus">
+        <option default value="Complete">Complete</option>
+        <option value="Incomplete">Incomplete</option>
+    </select>
 </span>
 
 <ul class="list-group" *ngIf="todos; else todosError">
@@ -30,9 +36,6 @@
         <strong>Category: </strong> {{ todo.category }}<br>
         <strong>Status: </strong> {{ todo.status }}<br>
         <strong>Body: </strong> {{ todo.body }}<br>
-        <button class="customButton" #input type="button">Toggle Status</button>
-        <button class="customButton" #input type="button"> Delete</button>
-
     </li>
 </ul>
 <!-- Maybe this should be a pop-up instead of just a text message? Not sure. -->

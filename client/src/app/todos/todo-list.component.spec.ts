@@ -20,25 +20,25 @@ describe("Todo list", () => {
             getTodos: () => Observable.of([
                 {
                     _id: "chris_id",
-                    name: "Chris",
-                    age: 25,
-                    company: "UMM",
-                    email: "chris@this.that"
+                    owner: "Chris",
+                    category: "fish",
+                    body: "Salmon",
+                    status: true
                 },
                 {
-                    _id: "pat_id",
-                    name: "Pat",
-                    age: 37,
-                    company: "IBM",
-                    email: "pat@something.com"
+                    _id: "bob_id",
+                    owner: "Bob",
+                    category: "fish",
+                    body: "Carp",
+                    status: true
                 },
                 {
-                    _id: "jamie_id",
-                    name: "Jamie",
-                    age: 37,
-                    company: "Frogs, Inc.",
-                    email: "jamie@frogs.com"
-                }
+                    _id: "jon_id",
+                    owner: "Jon",
+                    category: "Food",
+                    body: "Salmon",
+                    status: false
+                },
             ])
         };
 
@@ -63,20 +63,20 @@ describe("Todo list", () => {
         expect(todoList.todos.length).toBe(3);
     });
 
-    it("contains a todo named 'Chris'", () => {
-        expect(todoList.todos.some((todo: Todo) => todo.name === "Chris")).toBe(true);
+    it("contains a todo with owner 'Chris'", () => {
+        expect(todoList.todos.some((todo: Todo) => todo.owner === "Chris")).toBe(true);
     });
 
-    it("contain a todo named 'Jamie'", () => {
-        expect(todoList.todos.some((todo: Todo) => todo.name === "Jamie")).toBe(true);
+    it("contain a todo with owner 'Bob'", () => {
+        expect(todoList.todos.some((todo: Todo) => todo.owner === "Bob")).toBe(true);
     });
 
-    it("doesn't contain a todo named 'Santa'", () => {
-        expect(todoList.todos.some((todo: Todo) => todo.name === "Santa")).toBe(false);
+    it("doesn't contain a todo with owner 'Santa'", () => {
+        expect(todoList.todos.some((todo: Todo) => todo.owner === "Santa")).toBe(false);
     });
 
-    it("has two todos that are 37 years old", () => {
-        expect(todoList.todos.filter((todo: Todo) => todo.age === 37).length).toBe(2);
+    it("has two todos in category 'Fish'", () => {
+        expect(todoList.todos.filter((todo: Todo) => todo.category === "Fish").length).toBe(2);
     });
 
 });
