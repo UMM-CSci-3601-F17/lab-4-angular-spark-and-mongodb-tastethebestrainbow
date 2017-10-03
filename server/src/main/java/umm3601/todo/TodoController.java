@@ -203,5 +203,24 @@ public class TodoController {
 
         return true;
     }
+
+    /**
+     * @param queryParams
+     * @return an array of Todos in a JSON formatted string
+     */
+    public String displaySummary(Map<String, String[]> queryParams) {
+
+        Document filterDoc = new Document();
+
+        if (queryParams.containsKey("owner")) {
+            String targetOwner = queryParams.get("owner")[0];
+            filterDoc = filterDoc.append("owner", targetOwner);
+        }
+
+        //FindIterable comes from mongo, Document comes from Gson
+        FindIterable<Document> matchingTodos = todoCollection.find(filterDoc);
+
+        return JSON.serialize(matchingTodos);
+    }
 }
 

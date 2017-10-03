@@ -37,6 +37,6 @@ task buildExecutable {
 }
 buildExecutable.dependsOn(build)
 
-runAllTests.dependsOn test
+runAllTests.dependsOn check
 
-test.dependsOn(":client:runClientTests")
+check.dependsOn(":client:runClientTests")
