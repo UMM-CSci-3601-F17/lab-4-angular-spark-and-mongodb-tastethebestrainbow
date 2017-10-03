@@ -1,4 +1,4 @@
-import {UserPage} from './user-list.po';
+import {TodoPage} from './todo-list.po';
 import {browser, protractor} from 'protractor';
 
 let origFn = browser.driver.controlFlow().execute;
@@ -18,20 +18,26 @@ browser.driver.controlFlow().execute = function () {
 };
 
 describe('angular-spark-lab', () => {
-    let page: UserPage;
+    let page: TodoPage;
 
     beforeEach(() => {
-        page = new UserPage();
+        page = new TodoPage();
     });
 
-    it('should get and highlight User Name attribute ', () => {
+    it('should get and highlight Owner attribute ', () => {
         page.navigateTo();
-        expect(page.getUserTitle()).toEqual('User Name');
+        expect(page.getTodoTitle()).toEqual('User Name');
     });
 
     it('should type something in filer name box and check that it returned correct element', () => {
         page.navigateTo();
-        page.typeAName("Lynn");
+        page.typeAName("Fred");
+        expect(page.getFirstUser()).toEqual("Lynn Ferguson is 25 years old");
+    });
+
+    it('should type something in filer category box and check that it returned correct element', () => {
+        page.navigateTo();
+        page.typeAName("Fred");
         expect(page.getFirstUser()).toEqual("Lynn Ferguson is 25 years old");
     });
 
@@ -41,11 +47,7 @@ describe('angular-spark-lab', () => {
         for (let i = 0; i < 27; i++) {
             page.selectUpKey();
         }
-it('should type something in filer name box and check that it returned correct element', () => {
-        page.navigateTo();
-        page.typeAName("Fred");
-        expect(page.getFirstUser()).toEqual("Lynn Ferguson is 25 years old");
-    });
+
         expect(page.getFirstUser()).toEqual("Stokes Clayton is 27 years old");
 
         page.typeAName("Merrill");

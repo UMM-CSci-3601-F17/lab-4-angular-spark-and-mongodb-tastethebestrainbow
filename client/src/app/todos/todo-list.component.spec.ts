@@ -21,23 +21,23 @@ describe("Todo list", () => {
                 {
                     _id: "chris_id",
                     owner: "Chris",
-                    category: "fish",
+                    category: "Fish",
                     body: "Salmon",
-                    status: true
+                    status: "Complete"
                 },
                 {
                     _id: "bob_id",
                     owner: "Bob",
-                    category: "fish",
+                    category: "Fish",
                     body: "Carp",
-                    status: true
+                    status:"Complete"
                 },
                 {
                     _id: "jon_id",
                     owner: "Jon",
                     category: "Food",
                     body: "Salmon",
-                    status: false
+                    status: "In-Progress"
                 },
             ])
         };
@@ -73,10 +73,22 @@ describe("Todo list", () => {
 
     it("doesn't contain a todo with owner 'Santa'", () => {
         expect(todoList.todos.some((todo: Todo) => todo.owner === "Santa")).toBe(false);
-    });
+    })
 
+    //Test Category
     it("has two todos in category 'Fish'", () => {
         expect(todoList.todos.filter((todo: Todo) => todo.category === "Fish").length).toBe(2);
+    });
+
+    //Test status
+
+    it("has two todos in with status 'Complete'", () => {
+        expect(todoList.todos.filter((todo: Todo) => todo.status === "Complete").length).toBe(2);
+    });
+
+    //Test body
+    it("has two todos with body 'Salmon'", () => {
+        expect(todoList.todos.filter((todo: Todo) => todo.body === "Salmon").length).toBe(2);
     });
 
 });
