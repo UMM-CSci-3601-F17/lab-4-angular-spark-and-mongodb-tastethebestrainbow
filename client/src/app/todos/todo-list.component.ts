@@ -70,7 +70,7 @@ export class TodoListComponent implements OnInit {
         }
 
         //Filter by category
-        if (searchCategory != null) {
+        if (searchCategory != null && searchCategory != "") {
             searchCategory = searchCategory.toLocaleLowerCase();
 
             this.filteredTodos = this.filteredTodos.filter(todo => {
@@ -88,7 +88,7 @@ export class TodoListComponent implements OnInit {
         }
 
         //Filter by status
-        if (searchStatus != null) {
+        if (searchStatus != null && searchStatus != "") {
             searchStatus = searchStatus.toLocaleLowerCase();
 
             this.filteredTodos = this.filteredTodos.filter(todo => {

@@ -188,7 +188,12 @@ public class TodoController {
         newTodo.append("status", status);
 
         try {
-            todoCollection.insertOne(newTodo);
+            if(owner.equals("") || category.equals("") || body.equals("") || status.equals("")){
+                return false;
+                //This is bad coding style
+            } else{
+                todoCollection.insertOne(newTodo);
+            }
         }
         catch(MongoException me)
         {

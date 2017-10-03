@@ -8,8 +8,9 @@
             <input class="form-control" #input type="text" placeholder="Category" [(ngModel)]="newTodoCategory">
             <input class="form-control" #input type="text" placeholder="Body" [(ngModel)]="newTodoBody">
             <select class="form-control" [(ngModel)]="newTodoStatus">
+                <option selected="selected" value=""></option>
                 <option selected="selected" value="Complete">Complete</option>
-                <option value="Incomplete">Incomplete</option>
+                <option value="In-Progress">In-Progress</option>
             </select>
             <button class="form-control" #input type="button" (click)="this.addNewTodo(newTodoOwner, newTodoCategory, newTodoBody, newTodoStatus)">Add Todo</button>
         </span>
@@ -25,8 +26,9 @@
     <input id="todoCategory" #input type="text" placeholder="Filter by Category" (input)="todoCategory = $event.target.value">
     <input id="todoBody" #input type="text" placeholder="Filter by Body" (input)="todoBody = $event.target.value">
     <select [(ngModel)]="todoStatus">
+        <option default value=""></option>
         <option default value="Complete">Complete</option>
-        <option value="Incomplete">Incomplete</option>
+        <option value="In-Progress">In-Progress</option>
     </select>
 </span>
 
