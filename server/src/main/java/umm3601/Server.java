@@ -66,10 +66,10 @@ public class Server {
         get("api/users", userController::getUsers);
         get("api/users/:id", userController::getUser);
         post("api/users/new", userController::addNewUser);
-        //post("api/todoSummary",todoController::displaySummary);
 
         //List todos, filtered using query parameters
 
+        get("api/todoSummary",todoController::displaySummary);
         get("api/todos", todoController::getTodos);
         get("api/todos/:id", todoController::getTodo);
         post("api/todos/new", todoController::addNewTodo);

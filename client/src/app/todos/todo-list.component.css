@@ -26,5 +26,14 @@
     background:dodgerblue;
 }
 
+#todoStatusSel{
+    padding: 5.5px;
+    background: white;
+    border-radius: 2px;
+    border-style:solid;
+    border-color: lightgray;
+
+}
+
 
 

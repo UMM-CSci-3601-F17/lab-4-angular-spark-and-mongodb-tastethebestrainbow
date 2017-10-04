@@ -2,15 +2,19 @@ package umm3601.todo;
 
 import com.google.gson.Gson;
 import com.mongodb.*;
+import com.mongodb.client.AggregateIterable;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Accumulators;
+import com.mongodb.client.model.Aggregates;
 import com.mongodb.util.JSON;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 import spark.Request;
 import spark.Response;
 
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -111,12 +115,24 @@ public class TodoController {
 
         Document filterDoc = new Document();
 
-        if (queryParams.containsKey("age")) {
-            int targetAge = Integer.parseInt(queryParams.get("age")[0]);
-            filterDoc = filterDoc.append("age", targetAge);
+        //Filter by owner
+        if (queryParams.containsKey("owner")) {
+            String targetOwner = queryParams.get("owner")[0];
+            filterDoc = filterDoc.append("owner", targetOwner);
         }
 
-        //FindIterable comes from mongo, Document comes from Gson
+        //Filter by category
+        if (queryParams.containsKey("category")) {
+            String targetCategory = queryParams.get("category")[0];
+            filterDoc = filterDoc.append("category", targetCategory);
+        }
+
+        //Filter by status
+        if (queryParams.containsKey("status")) {
+            String targetStatus = queryParams.get("status")[0];
+            filterDoc = filterDoc.append("status", targetStatus);
+        }
+
         FindIterable<Document> matchingTodos = todoCollection.find(filterDoc);
 
         return JSON.serialize(matchingTodos);
@@ -190,7 +206,7 @@ public class TodoController {
         try {
             if(owner.equals("") || category.equals("") || body.equals("") || status.equals("")){
                 return false;
-                //This is bad coding style
+                //This is bad coding style?
             } else{
                 todoCollection.insertOne(newTodo);
             }
@@ -204,23 +220,16 @@ public class TodoController {
         return true;
     }
 
-    /**
-     * @param queryParams
-     * @return an array of Todos in a JSON formatted string
-     */
-    public String displaySummary(Map<String, String[]> queryParams) {
+    public String displaySummary(Request req, Response res)
+    {
+        res.type("application/json");
+        return displaySummary();
+    }
 
+    public String displaySummary() {
         Document filterDoc = new Document();
-
-        if (queryParams.containsKey("owner")) {
-            String targetOwner = queryParams.get("owner")[0];
-            filterDoc = filterDoc.append("owner", targetOwner);
-        }
-
-        //FindIterable comes from mongo, Document comes from Gson
         FindIterable<Document> matchingTodos = todoCollection.find(filterDoc);
-
-        return JSON.serialize(matchingTodos);
+        return JSON.serialize(filterDoc);
     }
 }
 
