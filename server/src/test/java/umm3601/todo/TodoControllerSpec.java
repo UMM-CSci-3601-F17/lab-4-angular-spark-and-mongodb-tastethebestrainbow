@@ -27,7 +27,7 @@ import static org.junit.Assert.assertEquals;
 public class TodoControllerSpec
 {
     private TodoController todoController;
-    private ObjectId samsId;
+
     @Before
     public void clearAndPopulateDB() throws IOException {
         MongoClient mongoClient = new MongoClient();
@@ -77,10 +77,11 @@ public class TodoControllerSpec
         return arrayReader.decode(reader, DecoderContext.builder().build());
     }
 
-    private static String getName(BsonValue val) {
+    private static String getOwner(BsonValue val) {
         BsonDocument doc = val.asDocument();
-        return ((BsonString) doc.get("name")).getValue();
+        return ((BsonString) doc.get("owner")).getValue();
     }
+
 
     @Test
     public void getAllTodos() {
@@ -91,11 +92,11 @@ public class TodoControllerSpec
         assertEquals("Should be 3 todos", 3, docs.size());
         List<String> names = docs
             .stream()
-            .map(TodoControllerSpec::getName)
+            .map(TodoControllerSpec::getOwner)
             .sorted()
             .collect(Collectors.toList());
-        List<String> expectedNames = Arrays.asList("Chris", "Chris", "Liam");
-        assertEquals("Names should match", expectedNames, names);
+        List<String> expectedOwners = Arrays.asList("Chris", "Chris", "Liam");
+        assertEquals("Names should match", expectedOwners, names);
     }
 
     @Test
@@ -108,7 +109,7 @@ public class TodoControllerSpec
         assertEquals("Should be 2 todos", 2, docs.size());
         List<String> names = docs
             .stream()
-            .map(TodoControllerSpec::getName)
+            .map(TodoControllerSpec::getOwner)
             .sorted()
             .collect(Collectors.toList());
         List<String> expectedNames = Arrays.asList("Chris", "Chris");
@@ -125,7 +126,7 @@ public class TodoControllerSpec
         assertEquals("Should be 1 todo", 1, docs.size());
         List<String> names = docs
             .stream()
-            .map(TodoControllerSpec::getName)
+            .map(TodoControllerSpec::getOwner)
             .sorted()
             .collect(Collectors.toList());
         List<String> expectedNames = Arrays.asList("Chris");
@@ -142,7 +143,7 @@ public class TodoControllerSpec
         assertEquals("Should be 2 todo", 2, docs.size());
         List<String> names = docs
             .stream()
-            .map(TodoControllerSpec::getName)
+            .map(TodoControllerSpec::getOwner)
             .sorted()
             .collect(Collectors.toList());
         List<String> expectedNames = Arrays.asList("Chris", "Liam");

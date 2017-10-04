@@ -133,6 +133,12 @@ public class TodoController {
             filterDoc = filterDoc.append("status", targetStatus);
         }
 
+        //Filter by body
+        if (queryParams.containsKey("body")) {
+            String targetStatus = queryParams.get("body")[0];
+            filterDoc = filterDoc.append("body", targetStatus);
+        }
+
         FindIterable<Document> matchingTodos = todoCollection.find(filterDoc);
 
         return JSON.serialize(matchingTodos);
