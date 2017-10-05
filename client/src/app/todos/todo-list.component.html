@@ -12,14 +12,13 @@
                 <option selected="selected" value="Complete">Complete</option>
                 <option value="In-Progress">In-Progress</option>
             </select>
-            <button class="form-control" #input type="button" (click)="this.addNewTodo(newTodoOwner, newTodoCategory, newTodoBody, newTodoStatus)">Add Todo</button>
+            <button id="submitBtn" class="form-control" #input type="button" (click)="this.addNewTodo(newTodoOwner, newTodoCategory, newTodoBody, newTodoStatus)">Add Todo</button>
         </span>
     </span>
 </span>
 
 </div>
 <br>
-
 <span id="title" class="list-group-item list-group-item-info">
     <h4>Filter Todos:</h4>
     <input id="todoOwner" #input type="text" placeholder="Filter by Owner" (input)="todoOwner = $event.target.value">
